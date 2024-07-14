@@ -17,5 +17,14 @@ if(err){
 }
 })
 
+/*
+db.end((err)=>{
+    if(err){
+        console.log("Error");
+    }
+    console.log("Connection Closed");
+})
+*/
+
 
 export default db;
