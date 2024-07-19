@@ -77,11 +77,44 @@ app.post("/inserting_data_1",(req,res)=>{
 })
 
 
+//// Put
+
+app.put("/:e_id",(req,res)=>{
+
+    const data = [req.body.e_name, req.params.e_id];
+    const sql = `update employee set e_name=? where e_id=?`;
+
+    db.query(sql,data,(err,result)=>{
+        if(err){
+            res.status(500).send("Unexpected Error")
+        }else{
+            res.status(200).send({result,message:"Data updated successfully"})
+        }
+    })
+})
+
+// req.params - it is used to retrieve parameters from the route of an HTTP request. 
+// When defining routes in Express, you can specify placeholders for parameters by using a colon (:) followed by the parameter name.
+//  These placeholders are then accessible through req.params in the route handler function.
 
 
+//// Delete
 
+app.delete("/deleting/:e_id",(req,res)=>{
 
+    const data = req.params.e_id;
+    const sql = `delete from employee where e_id=?`
 
+    db.query(sql,[data],(err,result)=>{
+        if(err){
+            res.status(500).send("Unexpected Error")
+        }else{
+            res.status(200).send({result,message:"Data deleted successfully"})
+        }
+
+    })
+
+})
 
 
 
